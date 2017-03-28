@@ -2,8 +2,19 @@
 <h1>NEW POST</h1>
 
 <%= simple_form_for @post do |f| %>
-	<%= f.input :title %><br>
-	<%= f.input :body %><br>
+
+	<% if @post.errors.any? %>
+		<div id="errors">
+			<h2><%= pluralize(@post.errors.count, "error")%> prevented this post from saving </h2>
+			<ul>
+				<%@post.errors.full_messages.each do |msg| %>
+					<li><%=msg%></li>
+				<%end%>
+			</ul>
+		</div>
+	<%end%>
+	<p>	<%= f.input :title %></p><br>
+	<p> <%= f.input :body %></p><br>
 	<%= f.button :submit %>
 <% end %>
 
