@@ -1,0 +1,10 @@
+<%= form_for (@member) do |f| %>
+
+	<div class="form_group"> <%= f.label :email %><br>
+		<%= f.text_field :email %> </div>
+	</p>
+	<br>
+	<p>
+		<%= f.button :submit, class: "button" %>
+	</p>
+<% end %>

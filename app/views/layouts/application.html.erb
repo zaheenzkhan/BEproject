@@ -3,7 +3,7 @@
   <head>
     <title>BE</title>
     <%= csrf_meta_tags %>
-       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      
   <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,7 +20,7 @@
   	
   	<ul>
   		<li class="category"> WEBSITE</li>
-  		<li><%= link_to "Blog", root_path %> </li>
+  		<li><%= link_to "Forum", forum_path %> </li>
   		<li><%= link_to "About", about_path %></li>
   	</ul>
 
@@ -31,9 +31,21 @@
   		<li>Instagram</li>
   	</ul>
   	
-    <% if !user_signed_in? %>
-  	<p class="sign_in">Admin Login</p>
-    <%end%>
+    <ul>
+      <li> <% if !user_signed_in? %>
+    	 <p class="sign_in"><%= link_to('Login', new_user_session_path)  %></p>
+      <%end%>
+      </li>
+      <li>
+        <% if user_signed_in? %>
+        <%= link_to('Edit registration', edit_user_registration_path) %>
+      </li>
+      <% else %>
+        <li>
+          <%= link_to('Register', new_user_registration_path)  %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 
   <div id="main_content">
@@ -43,12 +55,12 @@
       <% elsif current_page?(about_path) %>
         <p>ABOUT</p>
       <% else %>
-        <p><%= link_to "GO BACK TO ALL POSTS" , root_path %></p>
+        <p><%= link_to "GO BACK TO DASHBOARD" , root_path %></p>
       <% end %>
       <% if user_signed_in? %>
   		<div class="buttons">
-  			<button class="button"><%= link_to "New Post", new_post_path %></button>
-  			<button class="button"> Log Out</button>
+  			
+  			<button class="button"> <%= link_to('Logout', destroy_user_session_path, :method => :delete ) %></button>
   		</div>
       <%end%>
   	</div>

@@ -1,0 +1,7 @@
+<div class="page_wrapper">
+	<h1>Lets get started..</h1>
+
+	<% if user_signed_in? %>
+	<button class="button"><%= link_to "New Group", newgroup_path %></button>
+	<% end %>
+</div>

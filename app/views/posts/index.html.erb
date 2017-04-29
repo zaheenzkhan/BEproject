@@ -1,7 +1,11 @@
 <div id="page_wrapper">
 
+<button class="button" float="right"><%= link_to "New Post", new_post_path %></button>
+
 <% @post.each do |post| %>
 <div class="post_wrapper">
+
+<br><br>
 	<h2 class="title">
 		<%= link_to post.title, post%>
 	</h2>
